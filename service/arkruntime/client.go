@@ -34,16 +34,16 @@ type Client struct {
 
 func NewClientWithApiKey(apiKey string, setters ...configOption) *Client {
 	config := NewClientConfig(apiKey, "", "", setters...)
-	return newClientWithConfig(config)
+	return NewClientWithConfig(config)
 }
 
 func NewClientWithAkSk(ak, sk string, setters ...configOption) *Client {
 	config := NewClientConfig("", ak, sk, setters...)
-	return newClientWithConfig(config)
+	return NewClientWithConfig(config)
 }
 
 // NewClientWithConfig creates new API client for specified config.
-func newClientWithConfig(config ClientConfig) *Client {
+func NewClientWithConfig(config ClientConfig) *Client {
 	var arkClient *ark.ARK
 	arkConfig := volcengine.NewConfig().
 		WithCredentials(credentials.NewStaticCredentials(config.ak, config.sk, "")).
